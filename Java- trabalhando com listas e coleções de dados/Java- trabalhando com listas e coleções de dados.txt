@@ -1,0 +1,136 @@
+Lista de filmes com ArrayList
+-declarando variáveis com var
+a partir do java 10.
+Essa nova palavra chave permite que o compilador infira automaticamente o tipo da variável com base no valor atribuído a ela. Isso pode tornar o código mais limpo e legível, além de reduzir a digitação de código redundante.
+Sintaxe básica 
+A sintaxe básica para declarar uma variável com var é:
+var nomeDaVariavel = valorInicial;
+
+O tipo é inferido pela linguagem , não é possível usar var em váriaveis não inicializadas.
+
+Em Java, arrays são estruturas de dados que permitem armazenar uma coleção de elementos do mesmo tipo.
+Para declara-lo é preciso definir seu tipo e tamanho. Exemplo, criari um array de inteiros com tamanho 5.
+int [] numeros = new int[5];
+o índice inicial é 0 e o final-1.
+
+preenchendo o array com seu respectivo indice.
+for (int i = 0; i < numeros.length; i++) {
+    numeros[i] = i + 1;
+}
+
+Criando array de objetos.
+Filme[] filmes = new Filme[2];
+
+Filme filme1 = new Filme("Avatar", 2009);
+Filme filme2 = new Filme("DogVille", 2003);
+
+filmes[0] = filme1;
+filmes[1] = filme2;
+
+Arrays tem tamanho fixo e não podem ser alterados após a sua criação.
+Ausencia de métodos que permitam inserção e remoção de elementos de forma eficiente.
+
+Não devemos usar arrays para representar coleções de elementos devido as suas dificuldades, mas sim a classe ArrayList, que encapsula e abstrai um array, facilitando a sua utilização via métodos.
+///////////Exercicio//////////////////////////////////////////////////////////////////////////////
+uma classe que representa um carrinho de compras
+
+public class Carrinho {
+
+  ArrayList<Produto> produtos = new ArrayList<>();
+
+  public void adicionaProduto(Produto produto) {
+    produtos.add(produto);
+  }
+
+}
+
+restrição de permitir uma quantidade máxima de apenas 10 produtos no carrinho de compras. 
+public void adicionaProduto(Produto produto) {
+  if (produtos.size() < 10) {
+    produtos.add(produto);
+  } else {
+    System.out.prinln("Carrinho cheio!");
+  }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+foreach
+ArrayList<String> nomes = new ArrayList<>();
+nomes.add("Jacqueline");
+nomes.add("Paulo");
+nomes.add("Suellen");
+nomes.add("Emily");
+
+for (String nome : nomes) {
+    System.out.println(nome);
+}
+
+ou apartir do java 8
+nomes.forEach(nome -> System.out.println(nome));
+
+---------Variáveis e referencia
+referncias são ponteiros para objetos em memória, ou seja eles apontam para objetos e permitem q trabalhamos com eles.
+Em java, toda variável de objeto é na verdade uma referencia a esse objeto que foi alocado na memória.
+
+INTERFACES COMPARABLE E COMPARATOR
+Além da interface comparable, o java possui uma outra  interface chamada comparator, que nos fornece outra alternativa para ordenação de coleções.
+
+Método compareTo
+public class Conta {
+
+    private String titular;
+    private double saldo;
+
+    public Conta(String titular, double saldo) {
+        this.titular = titular;
+        this.saldo = saldo;
+    }
+
+    //getters e setters omitidos
+}
+Alternativa que indica a implementação correta do método compareTo, para poder ordenar uma lista de objetos do tipo Conta pelo saldo, de maneira decrescente, via implementação da interface Comparable:
+@Override
+public int compareTo(Conta outra) {
+    if (this.saldo < outra.saldo) {
+        return 1;
+    } else if (this.saldo > outra.saldo) {
+        return -1;
+    } else {
+        return 0;
+    }
+}
+*****************************************************************************************				
+	Para saber mais: outras classes de listas no Java
+O Java oferece diferentes classes para representar uma lista de objetos. Essas classes são úteis em diferentes cenários, dependendo das necessidades de cada aplicação.
+
+As classes mais comuns para representar uma lista no Java são:
+
+ArrayList
+A principal característica do ArrayList é que ele é baseado em um array dinâmico. Ele armazena os elementos em uma matriz interna e, conforme novos elementos são adicionados, o tamanho da matriz é automaticamente ajustado para acomodar o novo elemento. Da mesma forma, quando um elemento é removido, o tamanho do array é ajustado para evitar o desperdício de espaço. O ArrayList é amplamente utilizado devido à sua facilidade de uso e eficiência em termos de desempenho.
+
+LinkedList
+A classe LinkedList fornece uma lista encadeada de elementos. Diferentemente do ArrayList, que é baseado em um array, o LinkedList é baseado em uma lista encadeada, o que significa que cada elemento da lista é um objeto que contém uma referência para o próximo elemento. Isso permite que os elementos sejam adicionados e removidos de maneira eficiente em qualquer posição da lista, mas pode tornar a pesquisa de um elemento específico menos eficiente.
+
+O LinkedList é uma boa escolha quando a inserção e remoção de elementos em qualquer posição da lista é frequente e quando não é necessário acessar os elementos de forma aleatória.
+
+Vector
+A classe Vector é semelhante ao ArrayList, mas é sincronizada, o que significa que é segura para uso em threads concorrentes. No entanto, a sincronização adiciona uma sobrecarga de desempenho, então o Vector pode ser mais lento que o ArrayList em algumas situações.
+
+Stack
+A classe Stack implementa uma pilha, que é uma coleção ordenada de elementos onde a inserção e remoção de elementos ocorrem sempre no mesmo extremo da lista. Os elementos são adicionados e removidos em uma ordem conhecida como "last-in, first-out" (LIFO), ou seja, o último elemento adicionado é o primeiro a ser removido. A classe Stack é usada com frequência em algoritmos de processamento de texto, bem como em outras situações em que a LIFO é a maneira natural de organizar os dados
+Estruturas de dados: uma introdução:
+https://www.alura.com.br/artigos/estruturas-de-dados-introducao?_gl=1*1kc7k0g*_ga*MTU2NDE1MDkwMC4xNjkxNzA5Nzc0*_ga_1EPWSW3PCS*MTY5Njc4MjUyNC4yMS4xLjE2OTY3ODM1OTMuMC4wLjA.*_fplc*NGJyZ3Z3YlJYbmFkMiUyRkRGeVFYbHlJSkFpY2thS0lLVTFkczRIYW84Z1ZCZWZwR2tOZlZjajc5anVjY3BYNGNscWJUbTBRcFNKSENXRnM0dmoyZWx0WmkzUUg2SHVsUlJSQk84OFdiOENmdFZJUXZRNERjQTF2Mk5vN3RzaEElM0QlM0Q.
+******************************************************************************************
+Nessa aula, você aprendeu:
+Como ordenar uma lista no Java, via método Collections.sort;
+
+Que para ordenar objetos que são de classes do nosso projeto, com a classe Titulo, devemos implementar nela a interface Comparable;
+
+Como implementar corretamente o método compareTo, da interface Comparable, para que o Java faça a ordenação correta dos elementos de uma lista;
+
+Que podemos flexibilizar a ordenação de uma lista, via método sort da própria interface List, passando como parâmetro um critério de ordenação;
+
+Que a classe ArrayList implementa a interface List, sendo que essa interface possui outras implementações, como a classe LinkedList;
+
+Que podemos declarar a variável de uma lista utilizando a interface List, ganhando com isso o polimorfismo com a flexibilidade de trocar facilmente a implementação sendo instanciada.
+
+ 
